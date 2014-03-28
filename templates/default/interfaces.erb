@@ -10,11 +10,11 @@ auto lo
 iface lo inet loopback
 
 <% node["network-interfaces"]["interfaces"].each do |iname| -%>
-# Network interface: <%= iname %>
-auto <%= iname %>
-iface <%= iname %> inet <%= iname['type'] %>
-  <% iname['data'].each_pair do |key, value| -%>
-    <%= "#{key} #{value}" %>
+# Network interface: <%= iname.first %>
+auto <%= iname.first %>
+iface <%= iname.first %> inet <%= iname[1]["type"] %>
+  <% iname[1]["data"].each_pair do |key, value| -%>
+  <%= "#{key} #{value}" %>
   <% end -%>
 
 <% end -%>
