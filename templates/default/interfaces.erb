@@ -9,7 +9,7 @@
 auto lo
 iface lo inet loopback
 
-<% node["network-interfaces"]["interface"].each do |iname| -%>
+<% node["network-interfaces"]["interfaces"].each do |iname| -%>
 # Network interface: <%= iname %>
 auto <%= iname %>
 iface <%= iname %> inet <%= iname['type'] %>
