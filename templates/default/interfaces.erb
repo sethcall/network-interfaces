@@ -1,0 +1,20 @@
+##########################################################
+# This file is controlled by chef, do not modify by hand #
+##########################################################
+
+# This file describes the network interfaces available on your system
+# and how to activate them. For more information, see interfaces(5).
+
+# The loopback network interface
+auto lo
+iface lo inet loopback
+
+<% node["network-interfaces"]["interface"].each do |iname| -%>
+# Network interface: <%= iname %>
+auto <%= iname %>
+iface <%= iname %> inet <%= iname['type'] %>
+  <% iname['data'].each_pair do |key, value| -%>
+    <%= "#{key} #{value}" %>
+  <% end -%>
+
+<% end -%>
